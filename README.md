@@ -32,4 +32,8 @@ Bu işlem sırasında kullanılan Türkçe metinlerin kaynakları sayfa sonunda 
 
 ![alt text](https://github.com/kayserious/tddi-2023/blob/main/metawork/scheme.png?raw=true)
 
-Bahsettiğimiz Continual Pretrain yönteminden önce 
+Bahsettiğimiz Continual Pretrain yönteminden önce sınıflandırıcı oluşturmak için kullanılacak yol 1a - 1c şeklinde olacak iken sosyal medya verisi ile 1b adımını araya ekliyoruz. Bu kısmı `pretrainer.py` dosyasında bulabilirsiniz.
+
+## Kullanım
+
+### Gereksinimler

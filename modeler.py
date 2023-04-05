@@ -89,4 +89,4 @@ class KAYSERIOUSModel:
         self.text_column = text_column
         self.target_column = target_column
         
-        
+        self.id2label = {0: 'RACIST', 1: 'OTHER', 2: 'SEXIST', 3: 'PROFANITY', 4: 'INSULT'}
