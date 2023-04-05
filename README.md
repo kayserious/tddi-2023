@@ -36,4 +36,29 @@ Bahsettiğimiz Continual Pretrain yönteminden önce sınıflandırıcı oluştu
 
 ## Kullanım
 
-### Gereksinimler
+Bütün bağımlılıkları içeren `kayserious_tddi.yaml` dosyası ile yeni bir sanal çevre oluşturarak çalışmayı test edebilirsiniz. 
+
+```bash
+conda env create -f kayserious_tddi.yaml
+conda activate kayserious_tddi
+```
+
+### Uçtan uca yeniden çalıştırma
+
+Çalışma sonucunu Windows ortamında sıfırdan tekrar oluşturmak adına öncelikle `base_model` klasörü altındaki `clone_models_from_hub.bat` isimli git kodları içeren dosya çalıştırılır ve bulunduğu klasöre ihtiyaç duyulan BERT modelinin en güncel sürümünü indirir.
+
+Sonrasında tüm çalışma izleyen kod ile yeniden üretilebilir.
+
+```bash
+python run.py
+```
+
+### Tahminleme
+
+`KAYSERIOUSModel` objesinin `live=` argümanı `True` olarak işaretlendiğinde eğitim modundan üretim moduna geçiş yapılabilir ve işlem `predictor.py` dosyasında fonksiyonel hale getirilmiştir.
+
+```bash
+python predictor.py --input_data teknofest_train_final.csv 
+```
+
+Yukarıdaki komut `--input_data` argümanıyla aldığı yoldaki veri ile tahminlemeyi çalıştırır ve `--output_data` argümanı boş geçildiyse çalıştırıldığı dizine `predictions.csv` ismiyle tahminleri kaydeder.
