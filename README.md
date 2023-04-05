@@ -34,6 +34,31 @@ Bu işlem sırasında kullanılan Türkçe metinlerin kaynakları sayfa sonunda 
 
 Bahsettiğimiz Continual Pretrain yönteminden önce sınıflandırıcı oluşturmak için kullanılacak yol 1a - 1c şeklinde olacak iken sosyal medya verisi ile 1b adımını araya ekliyoruz. Bu kısmı `pretrainer.py` dosyasında bulabilirsiniz.
 
+
+Denenmiş diğer yöntemler ile kıyaslandığında ise;
+
+|Dil Modeli                                                                    | CV|Epoch | Ortalama F Makro Skoru|
+|:-----------------------------------------------------------------------------|--:|:-----|----------------------:|
+|BERTurk Cased (simpletransformers) Domain Spesifik 3 epoch\w 32k size corpus  |  5|12    |                 0.9584|
+|BERTurk Cased (simpletransformers) Domain Spesifik 3 epoch \w 18k size corpus |  5|6     |                 0.9437|
+|BERTurk Cased (simpletransformers) Domain Spesifik 2 epoch \w 18k size corpus |  5|6     |                 0.9432|
+|BERTurk Cased (simpletransformers)                                            |  5|10    |                 0.9430|
+|BERTurk Cased (simpletransformers) Domain Spesifik 1 epoch \w 18k size corpus |  5|6     |                 0.9427|
+|BERTurk Cased (simpletransformers) Domain Spesifik 4 epoch \w 18k size corpus |  5|6     |                 0.9411|
+|BERTurk 128k Uncased (Domain Spesifik Denemesi \w 15k size corpus)            |  5|5     |                 0.9355|
+|BERTurk Cased                                                                 |  5|10    |                 0.9346|
+|BERTurk Cased (Domain Spesifik Denemesi & MLM  \w 4k size corpus)             |  5|5     |                 0.9333|
+|BERTurk Cased                                                                 |  5|15    |                 0.9319|
+|BERTurk Uncased                                                               |  5|10    |                 0.9301|
+|BERTurk Cased (Domain Spesifik \w 2k size corpus)                             |  5|10    |                 0.9278|
+|Distilled BERTurk                                                             |  5|8     |                 0.9109|
+|TFIDF - BERTurk Embedding Catboost \w zemberek normalization                  |  5|-     |                 0.8961|
+|TFIDF - BERTurk Cased Embedding Catboost                                      |  5|-     |                 0.8912|
+|GPT-2                                                                         |  5|10    |                 0.8799|
+|BERTurk Cased Embedding Catboost                                              |  5|-     |                 0.8711|
+|BERTurk Uncased (simpletransformers)                                          |  5|6     |                 0.8581|
+
+
 ## Kullanım
 
 Bütün bağımlılıkları içeren `kayserious_tddi.yaml` dosyası ile yeni bir sanal çevre oluşturarak çalışmayı test edebilirsiniz. 
