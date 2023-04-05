@@ -89,6 +89,12 @@ python predictor.py --input_data teknofest_train_final.csv
 Yukarıdaki komut `--input_data` argümanıyla aldığı yoldaki veri ile tahminlemeyi çalıştırır ve `--output_data` argümanı boş geçildiyse çalıştırıldığı dizine `predictions.csv` ismiyle tahminleri kaydeder.
 
 
+## Dokümantasyon
+
+Çalışmanın bütün dokümantasyonu `documentation` klasöründe örneğini aşağıda görebileceğiniz şekilde `HTML` dosyaları olarak kaydedilmiştir.
+
+![alt text](https://github.com/kayserious/tddi-2023/blob/main/metawork/doc_example.png?raw=true)
+
 
 ---------------
 
