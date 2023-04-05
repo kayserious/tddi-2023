@@ -1,6 +1,7 @@
 
 
 from simpletransformers.language_modeling import LanguageModelingModel
+import multiprocessing
 import glob 
 import os
 import shutil
@@ -13,11 +14,14 @@ class KAYSERIOUSPreTrainer:
                  base_model,
                  pretrain_args,
                  seed,
+                 gpu,
                  out_dir = 'continual_pretrained'):
+                 
+        self.gpu = gpu
                  
         self.out_dir = out_dir
     
-        self.pre_model = LanguageModelingModel('bert',base_model)
+        self.pre_model = LanguageModelingModel('bert',base_model,use_cuda = self.gpu)
     
         self.pretrain_args = pretrain_args
         

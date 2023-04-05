@@ -3,20 +3,25 @@ import constants
 import pandas as pd
 import argparse, sys
 
+import multiprocessing
 
-parser = argparse.ArgumentParser()
+if __name__ == '__main__':
 
-parser.add_argument('--input_data', '-i', type= str)
-parser.add_argument('--output_data', '-o', type= str, default= 'predictions.csv')
+    multiprocessing.freeze_support()
 
-args = parser.parse_args()
+    parser = argparse.ArgumentParser()
 
-df = pd.read_csv(args.input_data,sep = constants.SEPARATOR)
+    parser.add_argument('--input_data', '-i', type= str)
+    parser.add_argument('--output_data', '-o', type= str, default= 'predictions.csv')
 
-md = modeler.KAYSERIOUSModel(live=True)
+    args = parser.parse_args()
 
-md.raise_from_binary(binary_path = constants.SAVE_DEPLOYED_TO,text_column = constants.TEXT_NAME, target_column = constants.TARGET_NAME)
+    df = pd.read_csv(args.input_data,sep = constants.SEPARATOR)
 
-predictions = md.predict(df)
+    md = modeler.KAYSERIOUSModel(live=True)
 
-predictions.to_csv(args.output_data,sep = constants.SEPARATOR,index = False)
+    md.raise_from_binary(binary_path = constants.SAVE_DEPLOYED_TO,text_column = constants.TEXT_NAME, target_column = constants.TARGET_NAME)
+
+    predictions = md.predict(df)
+
+    predictions.to_csv(args.output_data,sep = constants.SEPARATOR,index = False)

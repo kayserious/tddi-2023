@@ -1,3 +1,5 @@
 *.bin
 *.h5
 *.csv
+runs/*
+__pycache__/*

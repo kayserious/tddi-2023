@@ -7,7 +7,7 @@ TEXT_NAME = 'text'
 N_FOLDS = 5
 RANDOM_SEED = 1453
 
-USE_GPU = True
+USE_GPU = False
 
 BASE_MODEL = 'base_model/bert-base-turkish-cased'
 
@@ -16,8 +16,9 @@ SAVE_PRETRAINED_TO = 'continual_pretrained'
 SAVE_DEPLOYED_TO = 'deployed_model'
 
 
-PRETRAIN_ARGS = {'n_gpu' : 2,
-                 'num_train_epochs"':10,
+PRETRAIN_ARGS = {
+	         'num_workers':0,
+                 'num_train_epochs"':1,
                  'train_batch_size': 128}
 
 
@@ -28,8 +29,9 @@ MODEL_ARGS =  {
     'early_stopping_patience': 5,
     'evaluate_during_training_steps': 1000,
     'fp16': False,
-    'num_train_epochs':12,
+    'num_train_epochs':1,
     'train_batch_size': 128,
-    'n_gpu':2,
+    'num_workers' : 0,
+    #'n_gpu':2,
     'overwrite_output_dir':True
 }
