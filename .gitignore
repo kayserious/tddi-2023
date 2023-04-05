@@ -1,5 +1,3 @@
-!deployed_model
-
 NLPEvaluation_Kayserious.py
 
 *.bin
@@ -7,3 +5,5 @@ NLPEvaluation_Kayserious.py
 *.csv
 runs/*
 __pycache__/*
+
+!deployed_model/*.bin
