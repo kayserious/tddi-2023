@@ -87,3 +87,17 @@ python predictor.py --input_data teknofest_train_final.csv
 ```
 
 Yukarıdaki komut `--input_data` argümanıyla aldığı yoldaki veri ile tahminlemeyi çalıştırır ve `--output_data` argümanı boş geçildiyse çalıştırıldığı dizine `predictions.csv` ismiyle tahminleri kaydeder.
+
+
+
+---------------
+
+
+## Kaynaklar
+
+Pretrain corpus için kullanılan kaynaklar;
+
+
+[Toraman, C., Şahinuç, F., & Yilmaz, E. (2022). Large-Scale Hate Speech Detection with Cross-Domain Transfer. In Proceedings of the Language Resources and Evaluation Conference (pp. 2215–2225). European Language Resources Association.](https://aclanthology.org/2022.lrec-1.238/)
+
+[Türkçe Sosyal Medya Paylaşımı Veri Seti @ Kaggle](https://www.kaggle.com/datasets/mrtbeyz/trke-sosyal-medya-paylam-veri-seti)
