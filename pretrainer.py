@@ -8,6 +8,21 @@ import shutil
 
 class KAYSERIOUSPreTrainer:
 
+    """
+    
+    Pre-train edilmiş bir BERT modelini belirtilecek bir derlem (corpus) ile belirtilecek iterasyon adedince tekrar pre-train etmek için kullanılır.
+    
+    Parametreler:
+    
+    corpus_path (str) : Pre-train işleminde kullanılacak olan metin dosyasının yolu. Corpus, her satırda bir cümle olacak şekilde hazırlanmalıdır.
+    base_model (str) : Eğitime devam edilecek modelin yolu (pytorch ya da tensorflow binary dosyalarını, tokenizer dosyalarını ve config dosyalarını içermelidir). Model belirtilen yolda bulunamazsa huggingface model repolarında aranacaktır. 
+    pretrain_args (dict) : Pre-train işleminde kullanılacak MLM (Masked Language Modeling) parametreleri. constants.py dosyasındaki varsayılan parametrelerin kullanılması önerilir.
+    seed (int) : Yeniden üretilebilir sonuçlar için kullanılacak anahtar sayı.
+    gpu (bool) : Eğitim işlemi sırasında GPU desteği kullanılıp kullanılmayacağını belirleyen mantıksal değer. 
+    out_dir (str) : Eğitim tamamlandıktan sonra yeni modelin kaydedileceği dizin.
+    
+    """
+
 
     def __init__(self,
                  corpus_path,
@@ -33,6 +48,14 @@ class KAYSERIOUSPreTrainer:
         
     
     def pretrain(self):
+    
+    
+        """
+        
+        Gerekli düzenlemeleri yapılmış pre-trainer objesini eğitmek ve çıktılarını kaydetmek için kullanılan fonksiyon.
+        
+        
+        """
     
         self.pre_model.train_model(self.corpus_path,args = self.pretrain_args)
         

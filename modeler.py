@@ -13,10 +13,34 @@ from sklearn.metrics import f1_score
 
 
 def f_macro(y_true,y_pred):
+
+    """
+    
+    Değerlendirme metriği olarak kullanılacak ve sırasıyla gözlem / tahmin değerlerini alan skorlama fonksiyonu.
+    
+    
+    """
+
     return f1_score(y_true = y_true,y_pred=y_pred,average='macro')
 
 
 class KAYSERIOUSModel:
+
+
+    """
+    
+    BERT Modelini sağlanan veriye göre yapılandırıp eğitmek, hali hazırda eğitilmiş bir model varsa canlıya almak için kullanılır.
+    
+    Parametreler:
+    
+    live (bool) : Model canlıya alınacaksa True yapılması gereken mantıksal parametre. Eğer live = True olursa raise_from_binary() işlevi ile model dosyası eşlenmelidir.
+    modelargs (dict) : Fine-tune işlemi için gerekli olan argümanları içeren dictionary. constants.py dosyasındaki varsayılan değerlerin kullanılması önerilir.
+    modelfolder (str) : Eğitim süresince ve tamamlandıktan sonra model dosyalarının kaydedileceği dizinin yolu.
+    seed (int) : Yeniden üretilebilir sonuçlar için kullanılacak anahtar sayı.
+    gpu (bool) : Eğitim işlemi sırasında GPU desteği kullanılıp kullanılmayacağını belirleyen mantıksal değer. 
+    base_model (str) : Fine-tune edilecek modelin yolu (pytorch ya da tensorflow binary dosyalarını, tokenizer dosyalarını ve config dosyalarını içermelidir).
+    
+    """
     
     def __init__(self,
                  live = False,
@@ -35,6 +59,19 @@ class KAYSERIOUSModel:
             self.base_model = base_model
     
     def construct_data(self,training_data,text_column,target_column):
+    
+    
+        """
+        
+        Veri yapılandırma işlevi, bu işlev sayesinde her farklı problem ve model denemesi için farklı ayarlar yapmaya gerek kalmaz. 
+        
+        Parametreler :
+        
+        training_data (pandas.DataFrame) : Eğitim verisini içeren bir pandas veri çerçevesi. İçinde metin sütunu ve tahminlenmek istenen değişkeni bulundurmalıdır.
+        text_column (str) : Eğitimde kullanılacak metinleri içeren sütun ismi
+        target_column (str) : Eğitimde kullanılacak tahminlenmek istenen etiketleri içeren sütun ismi
+        
+        """
         
         self.id2label = dict(enumerate(training_data[target_column].unique()))
         
@@ -55,6 +92,14 @@ class KAYSERIOUSModel:
         
         
     def train_model(self):
+    
+        """
+        
+        Veri yapılandırıldıktan sonra model eğitimini başlatır.
+        
+        
+        """
+    
         
         self.bare_model.train_model(self.training_frame,acc = f_macro,output_dir = self.modelfolder)
         
@@ -63,6 +108,17 @@ class KAYSERIOUSModel:
         self.bare_model.tokenizer.save_pretrained(save_directory = self.modelfolder)
         
     def predict(self,new_data):
+    
+    
+        """
+        
+        Tahmin işlevi, yeni veri üzerinde eğitilen model ile tahmin yapılmasını sağlar.
+        
+        Parametreler :
+        
+        new_data (pandas.DataFrame) : Metin sütunu içeren bir pandas veri çerçevesi.
+        
+        """
         
         new_data = new_data.copy()
     
@@ -84,6 +140,19 @@ class KAYSERIOUSModel:
         
         
     def raise_from_binary(self,binary_path,text_column,target_column):
+    
+    
+        """
+        
+        Fine-tune edilen bir modeli canlıya almak için kullanılır.
+        
+        Parametreler : 
+        
+        binary_path (str) : Model dosyalarını içeren dizinin yolu.
+        text_column (str) : Metin değerlerini içeren sütun ismi.
+        target_column (str) : Tahminlenmek istenen hedef değişkenin kaydedileceği sütun ismi.
+        
+        """
     
         self.bare_model = ClassificationModel('bert',binary_path)
         self.text_column = text_column

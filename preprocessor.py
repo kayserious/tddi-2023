@@ -4,6 +4,20 @@ import string
 from zemberek import TurkishSpellChecker,TurkishSentenceNormalizer,TurkishSentenceExtractor,TurkishMorphology,TurkishTokenizer
 
 class KAYSERIOUSPreproc:
+
+
+    """
+    
+    Bir ön işleyici oluşturur.
+    
+    Parametreler:
+    
+    data (pandas.DataFrame) : Metin sütunu içeren bir pandas veri çerçevesi
+    text_column (str) : Ön işleme yapılacak sütun ismi
+    
+    Ön işleme yapıldıktan sonra KAYSERIOUSPreproc().data ile işlenmiş veri tekrar çağrılabilir.
+    
+    """
     
     def __init__(self,data,text_column):
         
@@ -14,6 +28,14 @@ class KAYSERIOUSPreproc:
         self.special_chars = string.punctuation + '\n'
         
     def rm_special_chars(self):
+    
+    
+        """
+        
+        Metin sütunundaki özel karakterleri temizlemek için kullanılır.
+        
+        
+        """
         
         def one_line_rm_special_chars(sentence):
 
@@ -25,6 +47,14 @@ class KAYSERIOUSPreproc:
         
         
     def normalize_sentences(self):
+    
+    
+        """
+        
+        Metin sütunundaki cümledeki yazım, noktalama gibi hataları Zemberek aracılığıyla Türkçe morfolojisine uygun olarak düzenler.
+        
+        
+        """
         
         def one_line_normalize(sentence):
 
@@ -37,6 +67,14 @@ class KAYSERIOUSPreproc:
         
         
     def stem(self):
+    
+    
+        """
+        
+        Metin sütunundaki cümledeki kelimeleri eklerinden arındırarak sadece kelime kökleri içeren kelime bulutları (bag-of-words) oluşturur.
+        
+        
+        """
     
         def one_line_stem(sentence):
     
@@ -60,6 +98,13 @@ class KAYSERIOUSPreproc:
         self.data[self.text_column] = self.data[self.text_column].apply(one_line_stem)
         
     def rm_stopwords(self):
+    
+        """
+        
+        Metin sütununda Türkçede sık kullanılan ve cümle anlamını etkilemeyen dolgu kelimelerini (stop words) temizler.
+        
+        
+        """
         
         def one_line_rm_stopwords(sentence):
     
