@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     pt.pretrain()
 
-    """
+    
 
     md = modeler.KAYSERIOUSModel(modelargs = constants.MODEL_ARGS,
                                  modelfolder = constants.SAVE_DEPLOYED_TO,
@@ -46,4 +46,4 @@ if __name__ == '__main__':
                                  
                                  
     md.train_model()
-    """
+    
